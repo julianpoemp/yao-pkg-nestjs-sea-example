@@ -1,0 +1,26 @@
+{
+  "name": "@yao-pkg-nestjs-sea-example/server-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@yao-pkg-nestjs-sea-example/server"
+    ],
+    "targets": {
+      "e2e": {
+        "executor": "@nx/jest:jest",
+        "outputs": [
+          "{projectRoot}/test-output/jest/coverage"
+        ],
+        "options": {
+          "jestConfig": "apps/server-e2e/jest.config.cts",
+          "passWithNoTests": true
+        },
+        "dependsOn": [
+          "@yao-pkg-nestjs-sea-example/server:build",
+          "@yao-pkg-nestjs-sea-example/server:serve"
+        ]
+      }
+    }
+  }
+}

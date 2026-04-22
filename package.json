@@ -4,9 +4,10 @@
   "license": "MIT",
   "scripts": {
     "build": "nx build server",
-    "package:sea:enhanced": "pkg --sea .",
-    "package:sea": "pkg apps/server/dist/main.js -t node22-linux-x64,node22-macos-arm64,node22-win-x64 --sea -o dist/sea/server",
-    "package": "pkg apps/server/dist/main.js -t node22-linux-x64,node22-macos-arm64,node22-win-x64 -o dist/pkg/server"
+    "package:all": "rm -rf dist && nx build server && npm run package && npm run package:sea && npm run package:sea:enhanced",
+    "package:sea:enhanced": "node ../pkg/lib-es5/bin.js --sea .",
+    "package:sea": "node ../pkg/lib-es5/bin.js --sea ./apps/server/dist/main.js -t node22-linux-x64,node22-macos-arm64,node22-win-x64 -o dist/sea/server",
+    "package": "node ../pkg/lib-es5/bin.js . -t node22-linux-x64,node22-macos-arm64,node22-win-x64 -o dist/pkg/server"
   },
   "private": true,
   "dependencies": {
@@ -41,7 +42,7 @@
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.40.0",
     "webpack-cli": "^5.1.4",
-    "@yao-pkg/pkg": "^6.15.0"
+    "@yao-pkg/pkg": "^6.18.1"
   },
   "workspaces": [
     "apps/*"
